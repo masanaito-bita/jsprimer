@@ -9,9 +9,15 @@ button.textContent = "Push Me!";
 // body要素の子要素としてbuttonを挿入する
 document.body.appendChild(button);
 
-// Fetch API ページ全体を再読み込みすることなくURLからデータ取得が可能
-const userId = "masanaito-bita";
-fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
+/**
+ * GithubのユーザーIDからユーザー情報を取得する
+ * 
+ * @param {string} userId
+ * @return {object} 指定されたGithubのユーザー情報
+ */
+function fetchUserInfo(userId) {
+    // Fetch API ページ全体を再読み込みすることなくURLからデータ取得が可能
+    fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
     .then(response => {
         // レスポンスの受け取り
         console.log(response.status); // 200
@@ -24,3 +30,4 @@ fetch(`https://api.github.com/users/${encodeURIComponent(userId)}`)
         // -> thenメソッドの第二引数 or catchメソッドのコールバック関数が呼び出される
         console.error(error);
     });
+}
